@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-ki$#ps8e9u01yknape%)y+v$@&_48zldcac)*ijt-nzqixcpck
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['quiz_project.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
