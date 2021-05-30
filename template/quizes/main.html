@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+    <script src="{% static 'quizes/main.js' %}" defer></script> 
+{% endblock scripts %}
+
+{% block title %}
+home page
+{% endblock title %}
+
+{% block content %}
+<div class="modal fade" id="quizStartModal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Start the Quiz?</h5>
+        <a  href= "#" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body" id="modal-body-confirm"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+        <button type="button" id="start-button" class="btn btn-success">START</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+			  <div class="col-md-2 mx-auto">  </div>
+        <div class="col-md-8 mx-auto"> 
+                  
+          <div class="jumbotron text-center"><h1>Online Quiz</h1></div>
+          <hr>
+          <p> 
+          This is a free online quiz for you to try. Each online test consists of 10 questions, 
+          they are designed as per the school  syllabus. 
+          After you have submitted your answers you will be given a final score for your test. 
+          Correct answer will be provided for each wrong answer attempted by you.
+          We hope these tests will help the students very much in their day to day practice and enhance their resolution skill.
+          </p>
+          <hr>
+          <h4> Choose the quiz category </h4>
+          {% for obj in object_list %}
+          <div class="card-header text-center">
+              <a href="#"
+                  class="btn btn-link modal-button"
+                  data-pk="{{obj.pk}}"
+                  data-quiz="{{obj.name}}"
+                  data-questions="{{obj.number_of_questions}}"
+                  data-difficulty="{{obj.difficluty}}"
+                  data-time="{{obj.time}}"
+                  data-pass = "{{obj.requiered_score_to_pass}}"
+                  data-toggle="modal"
+                  data-target="#quizStartModal">
+                  <h5> {{obj.name}} </h5>
+              <br>
+              </a>
+
+            </div>
+
+          {% endfor %}
+                  </div>
+        <div class="col-md-2 mx-auto">  </div>
+    </div>
+
+<hr>
+{% endblock content %}

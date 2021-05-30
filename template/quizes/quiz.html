@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+    <script src="{% static 'quizes/quiz.js' %}" defer></script> 
+{% endblock scripts %}
+{% block title %}
+{{obj.name}}
+{% endblock title %}
+
+{% block content %}
+
+{% comment %} <div class="row "> {% endcomment %}
+    {% comment %} <div class="col">
+        <b>{{obj.name}} QUIZ</b>
+        <p>Score to pass: {{obj.requiered_score_to_pass}}%</p>
+    </div> {% endcomment %}
+
+    <div class="card">
+        <h2 class="card-header text-center">   <b>{{obj.name}} QUIZ</b> </h2>
+
+        <div class="card-body">
+            <a href="{% url 'quizes:main-view' %}" class="btn btn-primary text-right">Home</a>
+            <h4 class="card-title text-right"><p>Score to pass: {{obj.requiered_score_to_pass}}%</p>  </p></h4>
+             <h4><div class="col text-right" id="timer-box"></div> <h4>
+        </div>
+    </div>
+    
+    {% comment %} </div> {% endcomment %}
+    
+Read the question carefully and select one option.
+<form id="quiz-form" class="mt-3 mb-3">
+    {% csrf_token %}
+    <div id="quiz-box"></div>
+    <button type="submit" class="btn btn-primary mt-3" >show me results</button>
+</form>
+<span> </span>
+
+<div class="card">
+  <h2 class="card-title">  <div class="card-header text-center">  Quiz Result  </div>  </h2>
+
+  <div class="card-body">
+    <h4 class="card-title"><div id="score-box"></div>   </p></h4>
+    <div id="result-box"></div>
+  </div>
+</div>
+
+{% comment %} <div id="result-box"></div> {% endcomment %}
+{% endblock content %}
