@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 #TEMPLATE_DIR = os.path.join(BASE_DIR,'template')
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-ki$#ps8e9u01yknape%)y+v$@&_48zldcac)*ijt-nzqixcpck
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['quiz_project.com']
 
 
 # Application definition
@@ -123,10 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR/ 'static',
-    BASE_DIR/ 'quizes'/'static',
-]
+STATIC_ROOT = os.path.join(BASE_DIR/ 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR/ 'quizes'/'static'),)
+django_heroku.settings(locals())
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
